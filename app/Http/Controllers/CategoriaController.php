@@ -53,7 +53,7 @@ class CategoriaController extends Controller
     }
 
     public function edit($id){
-      return view("estoque.categoria.show", [
+      return view("estoque.categoria.edit", [
         "categoria"=>Categoria::findOrFail($id)
       ]);
     }
@@ -69,7 +69,7 @@ class CategoriaController extends Controller
 
     public function destroy($id){
       $categoria = Categoria::findOrFail($id);
-      $cateogira->condicao = 0;
+      $categoria->condicao = 0;
       $categoria->update();
 
       return Redirect::to('estoque/categoria');
