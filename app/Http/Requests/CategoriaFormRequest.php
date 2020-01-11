@@ -3,6 +3,7 @@
 namespace sistemaLaravel\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use sistemaLaravel\Http\Requests\Request;
 
 class CategoriaFormRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class CategoriaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => required|max:50,
-            'nome' => max:256,
+            'nome'=>'required|max:256',
+            'descricao'=>'max:256',
         ];
     }
 }
