@@ -23,13 +23,13 @@ class ProdutoFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+      return [
           'idcategoria'=>'required',
-          'codigo'=>'required|50',
-          'nome'=>'required|50',
+          'codigo'=>'required|max:50',
+          'nome'=>'required|max:50',
           'estoque'=>'required|numeric',
           'descricao'=>'required|max:512',
-          'imagem'=>'mines:jpeg,bmp,png',
-        ];
+          'imagem'=>'mimes:jpeg,bmp,png, jpg',
+      ];
     }
 }

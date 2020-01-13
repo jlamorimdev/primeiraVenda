@@ -47,17 +47,20 @@ class ProdutoController extends Controller
 
     public function store(ProdutoFormRequest $request)
     {
+
         $produto = new Produto;
         $produto->idcategoria = $request->get('idcategoria');
         $produto->codigo = $request->get('codigo');
         $produto->nome = $request->get('nome');
+        $produto->estoque = $request->get('estoque');
+        $produto->descricao = $request->get('descricao');
         $produto->estado = 'Ativo';
 
         if (Input::hasFile('imagem')) {
           $file = Input::file('imagem');
-          $file->move(public_patch().'/imagens/produtos/',
-          $file->getClienteOriginalName());
-          $produto->imagem = $file->getClienteOriginalName();
+          $file->move(public_path().'/imagens/produtos/',
+          $file->getClientOriginalName());
+          $produto->imagem = $file->getClientOriginalName();
         }
 
         $produto->save();
@@ -93,12 +96,12 @@ class ProdutoController extends Controller
         $produto->codigo = $request->get('codigo');
         $produto->nome = $request->get('nome');
 
-        if (Input::hasFile('imagem')) {
-          $file = Input::file('imagem');
-          $file->move(public_path().'/imagens/produtos/',
-          $file->getClientOriginalName());
-          $produto->imagem = $file->getClientOriginalName();
-        }
+        if(Input::hasFile('imagem')){
+      		$file=Input::file('imagem');
+      		$file->move(public_path().'/imagens/produtos/',
+      			$file->getClientOriginalName());
+      		$produto->imagem=$file->getClientOriginalName();
+      	}
 
         $produto->update();
 
