@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('estoque/categoria', 'CategoriaController');
+Route::resource('estoque/produto', 'ProdutoController');
