@@ -25,6 +25,7 @@ class ProdutoController extends Controller
                         ->select('p.idproduto', 'p.nome', 'p.codigo', 'p.estoque',
                                   'c.nome as categoria', 'p.descricao', 'p.imagem', 'p.estado')
                         ->where('p.nome', 'LIKE' , '%' .$query . '%')
+                        ->where('p.estado', '=' , 'Ativo')
                         ->orderBy('idproduto', 'desc')
                         ->paginate(5);
 
