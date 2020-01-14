@@ -22,7 +22,7 @@ class ClienteController extends Controller
         $pessoas=DB::table('pessoa')
                     ->where('nome', 'LIKE', '%' . $query . '%')
                     ->where('tipo_pessoa', '=', 'Cliente')
-                    ->orwhere('num_documento', '=', '%' .$query . '%')
+                    ->orwhere('num_doc', '=', '%' .$query . '%')
                     ->orderBy('idpessoa', 'desc')
                     ->paginate(10);
 
@@ -36,7 +36,7 @@ class ClienteController extends Controller
 
     public function create()
     {
-        return view('vendas.cliente.create');
+        return view('venda.cliente.create');
     }
 
     public function store(PessoaFormRequest $request)
@@ -45,7 +45,7 @@ class ClienteController extends Controller
       $pessoa->tipo_pessoa = 'Cliente';
       $pessoa->nome = $request->get('nome');
       $pessoa->tipo_documento = $request->get('tipo_documento');
-      $pessoa->num_doc = $request->get('num_documento');
+      $pessoa->num_doc = $request->get('num_doc');
       $pessoa->endereco = $request->get('endereco');
       $pessoa->telefone = $request->get('telefone');
       $pessoa->email = $request->get('email');
@@ -57,14 +57,14 @@ class ClienteController extends Controller
     public function show($id)
     {
         return view('venda/cliente/show', [
-          "pessoa" => Pessoa::findOrFail($id);
+          "pessoa" => Pessoa::findOrFail($id)
         ]);
     }
 
     public function edit($id)
     {
       return view('venda.cliente.edit', [
-        "cliente" => Pessoa::findOrFail($id)
+        "pessoa" => Pessoa::findOrFail($id)
       ]);
     }
 
@@ -74,7 +74,7 @@ class ClienteController extends Controller
       $pessoa->nome = $request->get('nome');
       $pessoa->tipo_pessoa = 'Cliente';
       $pessoa->tipo_documento = $request->get('tipo_documento');
-      $pessoa->num_documento = $request->get('num_documento');
+      $pessoa->num_doc = $request->get('num_doc');
       $pessoa->endereco = $request->get('endereco');
       $pessoa->telefone = $request->get('telefone');
       $pessoa->email = $request->get('email');
